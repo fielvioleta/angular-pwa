@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ConnectionService } from 'ng-connection-service';
+import { get, set } from 'idb-keyval';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,10 @@ export class AppComponent {
         this.status = "OFFLINE";
         console.log('offline');
       }
-    })
+    });
+
+    set('hello', 'world')
+    .then(() => console.log('It worked!'))
+    .catch((err) => console.log('It failed!', err));
   }
 }
