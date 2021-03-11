@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HeaderInterceptor } from './core/http/header-interceptor';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './core/material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     {
