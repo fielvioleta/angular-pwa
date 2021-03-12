@@ -3,7 +3,7 @@
     <input type="text" [(ngModel)]="searchText" placeholder="Enter text to search" (ngModelChange)="onChange($event)">
 </div>
 <div class="list-container" *ngIf="data">
-    <mat-card *ngFor="let product of data">
+    <mat-card *ngFor="let product of data" routerLink="/products/details/{{product.id}}">
         <img [src]="apiBaseUrl + product.image.formats.thumbnail.url" alt="" (error)="onImgError($event)">
         <span>{{product.name}}</span>
         <span>${{product.price}}</span>

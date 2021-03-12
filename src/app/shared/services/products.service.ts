@@ -25,4 +25,14 @@ export class ProductsService {
       });
     });
   }
+
+  getProductDetails(id: number): Promise<ProductListModel> {
+    return new Promise((resolve, reject) => {
+      this.apiService.get<ProductListModel>(`products/${id}`).subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
+    });
+  }
 }

@@ -1,0 +1,21 @@
+<div class="detail-container">
+    <div class="header-container">
+        <h3>Product details</h3>
+        <a href="#" routerLink="/products/list">Back</a>
+    </div>
+    
+
+    <div *ngIf="data" class="image-container">
+        <img [src]="apiBaseUrl + data.image.formats.thumbnail.url" alt="" (error)="onImgError($event)">
+        <div class="name-container">
+            <div><h2>{{data.name}}</h2></div>
+            <div>Category: {{data.category.name}}</div>
+            <div>${{data.price}}</div>
+        </div>
+    </div>
+
+    <h3>Product Details</h3>
+    <div *ngIf="data" class="description-container">
+        {{data.description}}
+    </div>
+</div>
