@@ -4,7 +4,6 @@
         <a href="#" routerLink="/products/list">Back</a>
     </div>
     
-
     <div *ngIf="data" class="image-container">
         <img [src]="apiBaseUrl + data.image.formats.thumbnail.url" alt="" (error)="onImgError($event)">
         <div class="name-container">

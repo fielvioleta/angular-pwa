@@ -2,26 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { ProductListModel } from 'src/app/shared/models/products/product-list.model';
 import { environment } from 'src/environments/environment';
-
+import { CommonService } from 'src/app/shared/services/common.service';
+import { set, get } from 'idb-keyval';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  data: ProductListModel;
+  data: any = [];
   apiBaseUrl = environment.app_url;
   searchText: string = '';
-  dataTmp: ProductListModel;
+  dataTmp: any = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(
+    private productsService: ProductsService,
+    private commonService: CommonService
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.productsService.getProductList().then(res => {
       this.dataTmp = res;
       this.data = res;
     }).catch((err) => {
-      console.log('It failed!', err);
+      this.commonService.getDataFromIndexDB('products').then(res => {
+          this.data = res;
+          this.dataTmp = res;
+      });
     });
   }
 
