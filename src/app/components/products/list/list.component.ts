@@ -1,22 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { ProductListModel } from 'src/app/shared/models/products/product-list.model';
+import { ProductsModule } from '../products.module';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'price'];
-  datasource: MatTableDataSource<{}>;
+  data: ProductsModule;
+  apiBaseUrl = environment.app_url;
+  searchText: string = '';
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsService.list().subscribe((res: ProductListModel[]) => {
-      this.datasource = new MatTableDataSource(res);
+    this.productsService.getProductList().then(res => {
+      this.data = res;
+    }).catch((err) => {
+      console.log('It failed!', err);
     });
   }
 
+  onImgError(event){
+    event.target.src = './assets/icons/prodgr_default_300.png';
+  }
 }

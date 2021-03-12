@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ConnectionService } from 'ng-connection-service';
-import { get, set } from 'idb-keyval';
+import { CommonService } from './shared/services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -8,25 +8,21 @@ import { get, set } from 'idb-keyval';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  status = 'ONLINE';
   isConnected = true;
-  title = 'commerce-angular-pwa';
 
-  constructor(private connectionService: ConnectionService) {
+  constructor(
+    private connectionService: ConnectionService,
+    private commonService: CommonService
+  ) {
+    this.commonService.networkStatusUpdate(true);
     this.connectionService.monitor().subscribe(isConnected => {
       this.isConnected = isConnected;
       if (this.isConnected) {
-        this.status = "ONLINE";
-        console.log('online');
+        this.commonService.networkStatusUpdate(true);
       }
       else {
-        this.status = "OFFLINE";
-        console.log('offline');
+        this.commonService.networkStatusUpdate(false);
       }
     });
-
-    set('hello', 'world')
-    .then(() => console.log('It worked!'))
-    .catch((err) => console.log('It failed!', err));
   }
 }

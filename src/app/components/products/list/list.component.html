@@ -1,22 +1,11 @@
-<div class="list-container">
-    <table mat-table *ngIf="datasource" [dataSource]="datasource" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<div class="search-container">
+    <label>Search Products</label>
+    <input type="text" [(ngModel)]="searchText" placeholder="Enter text to search">
+</div>
+<div class="list-container" *ngIf="data">
+    <mat-card *ngFor="let product of data">
+        <img [src]="apiBaseUrl + product.image.formats.thumbnail.url" alt="" (error)="onImgError($event)">
+        <span>{{product.name}}</span>
+        <span>${{product.price}}</span>
+    </mat-card>
 </div>

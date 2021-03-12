@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ApiService } from 'src/app/core/http/api.service';
+import { ProductListModel } from 'src/app/shared/models/products/product-list.model';
+import { set, get } from 'idb-keyval';
+import { CommonService } from './common.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +12,17 @@ import { ApiService } from 'src/app/core/http/api.service';
 export class ProductsService {
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private commonService: CommonService
   ) { }
 
-  list(): Observable<{}> {
-    return this.apiService.get(`products`);
+  getProductList(): Promise<ProductListModel> {
+    return new Promise((resolve, reject) => {
+      this.apiService.get<ProductListModel>(`products`).subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
+    });
   }
 }
