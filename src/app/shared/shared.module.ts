@@ -4,15 +4,20 @@ import { ApiService } from '../core/http/api.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../core/material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {WebcamModule} from 'ngx-webcam';
+import { CameraComponent } from './components/camera/camera.component';
+import { LocalNotifComponent } from './components/local-notif/local-notif.component';
+import { PowerbiComponent } from './components/powerbi/powerbi.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [CameraComponent, LocalNotifComponent, PowerbiComponent],
   imports: [
     CommonModule,
     NgxSpinnerModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    WebcamModule,
   ],
   providers: [ApiService],
   exports: [
@@ -20,6 +25,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    WebcamModule,
+    CameraComponent,
+    LocalNotifComponent,
+    PowerbiComponent
   ]
 })
 export class SharedModule { }

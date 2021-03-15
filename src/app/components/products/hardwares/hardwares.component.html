@@ -1,0 +1,25 @@
+<div class="hardware-container">
+    <div class="menu">
+        <ul>
+            <li (click)="type = 'camera'">Camera</li>
+            <li (click)="type = 'notification'">Local Nofitication</li>
+            <li (click)="type = 'powerbi'">Power BI</li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <h3>{{type | titlecase}}</h3>
+
+        <div *ngIf="type === 'camera'">
+            <app-camera></app-camera>
+        </div>
+
+        <div *ngIf="type === 'notification'">
+            <app-local-notif></app-local-notif>
+        </div>
+        <div *ngIf="type === 'powerbi'">
+            <app-powerbi></app-powerbi>
+        </div>
+         
+    </div>
+</div>

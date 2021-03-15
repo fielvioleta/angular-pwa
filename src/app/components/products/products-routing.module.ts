@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
+import { HardwaresComponent } from './hardwares/hardwares.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,11 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
-  }
+  },
+  {
+    path: 'hardwares',
+    component: HardwaresComponent,
+  },
 ];
 
 @NgModule({
