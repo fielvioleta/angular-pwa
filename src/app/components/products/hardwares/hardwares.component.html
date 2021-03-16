@@ -4,6 +4,7 @@
             <li (click)="type = 'camera'">Camera</li>
             <li (click)="type = 'notification'">Local Nofitication</li>
             <li (click)="type = 'powerbi'">Power BI</li>
+            <li (click)="type = 'network'">Network Information</li>
         </ul>
     </div>
     
@@ -20,6 +21,8 @@
         <div *ngIf="type === 'powerbi'">
             <app-powerbi></app-powerbi>
         </div>
-         
+        <div *ngIf="type === 'network'">
+            <app-network-info></app-network-info>
+        </div>
     </div>
 </div>
